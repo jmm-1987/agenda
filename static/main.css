@@ -50,10 +50,23 @@ body {
   cursor: pointer;
 }
 
-.bi-file-earmark-plus {
-  padding: 10px 20px;
-}
 
 .custom-icon {
     font-size: 80px; /* Cambia este valor según el tamaño deseado */
+  }
+
+  .btn-calendar {
+  position: absolute;
+  left: 100px; /* Ajusta la posición del botón desde el borde izquierdo */
+  top: 10px; /* Ajusta la posición del botón desde el borde superior */
+  padding: 20px 20px;
+  background-color: rgba(0, 0, 0, 0); /* Color de fondo del botón */
+  color: #fff; /* Color del texto del botón */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.custom-icon2 {
+    font-size: 40px; /* Cambia este valor según el tamaño deseado */
   }
