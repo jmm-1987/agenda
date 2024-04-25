@@ -38,14 +38,22 @@ body {
   margin-bottom: 5px;
 }
 
-.boton-izquierda {
+.btn-primary {
   position: absolute;
   left: 20px; /* Ajusta la posición del botón desde el borde izquierdo */
-  top: 20px; /* Ajusta la posición del botón desde el borde superior */
-  padding: 10px 20px;
-  background-color: #007bff; /* Color de fondo del botón */
+  top: 600px; /* Ajusta la posición del botón desde el borde superior */
+  padding: 20px 20px;
+  background-color: rgba(0, 0, 0, 0); /* Color de fondo del botón */
   color: #fff; /* Color del texto del botón */
   border: none;
   border-radius: 5px;
   cursor: pointer;
 }
+
+.bi-file-earmark-plus {
+  padding: 10px 20px;
+}
+
+.custom-icon {
+    font-size: 80px; /* Cambia este valor según el tamaño deseado */
+  }
