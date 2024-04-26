@@ -1,11 +1,9 @@
-from flask import Flask, render_template, session, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for
 import db
 from models import Tarea
 from datetime import date, datetime
 
-
 app = Flask(__name__)
-
 
 @app.route('/')
 def home():
