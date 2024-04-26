@@ -50,9 +50,16 @@ body {
   cursor: pointer;
 }
 
+button {
+      background-color: transparent; /* Establece el fondo transparente */
+      border: none; /* Elimina el borde */
+      cursor: pointer;
+    }
+
 
 .custom-icon {
     font-size: 80px; /* Cambia este valor según el tamaño deseado */
+    color: #FFFFFF
   }
 
   .btn-calendar {
