@@ -22,15 +22,15 @@
 
 <br>
 <div class="flex-container">
+  {% for t in lista_tareas %}
   <div class="post-it">
-    <h2>Tarea 1</h2>
-    <p class="contenido">
-    esto en el contenido de la tarea probando con una frase largar
-    </p>
-    <fecha>22/03/2024</fecha>
+    <h2>{{t.titulo}}</h2>
+    <p class="contenido">{{t.contenido}}</p>
+    <fecha>{{t.fecha_alerta}}</fecha>
   </div>
-
-  <div class="post-it">
+  {% endfor %}
+</div>
+  <!--<div class="post-it">
     <h2>Lista de Tareas 2</h2>
     <ul class="task-list">
       <li class="task-item">Revisar correo electrónico</li>
@@ -47,7 +47,7 @@
       <li class="task-item">Ordenar la habitación</li>
       <li class="task-item">Leer un libro</li>
     </ul>
-  </div>
+  </div>-->
 </div>
 
 </body>

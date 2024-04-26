@@ -9,9 +9,11 @@ app = Flask(__name__)
 
 @app.route('/')
 def home():
-    tareas_hoy = db.session.query(Tarea).filter(Tarea.fecha_alerta == date.today()).all()
-    print (tareas_hoy)
-    return render_template("index.html")
+    hoy = datetime.now().date()
+    lista_tareas = db.session.query(Tarea).all()
+    print (lista_tareas)
+    print(date.today())
+    return render_template("index.html", lista_tareas = lista_tareas)
 
 @app.route('/form_nueva_tarea')
 def formulario_tarea():
