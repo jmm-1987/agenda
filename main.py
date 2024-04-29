@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for
 import db
 from models import Tarea
-from datetime import date, datetime
+from datetime import date, datetime, timedelta
 from db import session
 
 
@@ -10,11 +10,13 @@ app = Flask(__name__)
 @app.route('/')
 def home():
     hoy = datetime.today().date()
-    lista_tareas = db.session.query(Tarea).filter(Tarea.fecha_alerta == hoy).all()
-    print (lista_tareas)
+    manana = hoy + timedelta(days=1)
+    lista_hoy = db.session.query(Tarea).filter(Tarea.fecha_alerta == hoy).all()
+    lista_proxima = db.session.query(Tarea).filter(Tarea.fecha_alerta == manana).all()
+
     print(type(hoy))
 
-    return render_template("index.html", lista_tareas = lista_tareas, hoy=hoy)
+    return render_template("index.html", lista_hoy = lista_hoy, lista_proxima = lista_proxima, hoy=hoy)
 
 @app.route('/form_nueva_tarea')
 def formulario_tarea():
