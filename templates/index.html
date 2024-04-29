@@ -22,16 +22,23 @@
 
 
 <br>
+<div class="d-flex flex-column">
 <div class="flex-container">
   <h2 class="titulo">Tareas de hoy {{hoy.strftime('%d/%m/%Y')}}</h2>
-  <a href="form_nueva_tarea" class="btn btn-primary">
-    <button type="button">
-    <i class="chevron-compact-down"></i>
-    </button>
-    </a>
-  </h2>
   {% for t in lista_hoy %}
   <div class="post-it">
+    <h2>{{t.titulo}}</h2>
+    <p class="contenido">{{t.contenido}}</p>
+    <fecha>{{t.fecha_alerta.strftime('%d/%m/%Y')}}</fecha>
+    <a href="{{ url_for('grabar_tarea', id=t.id) }}"><i class="bi bi-calendar-week custom-icon2"></i></a>
+    <a href="{{ url_for('grabar_tarea', id=t.id) }}"><i class="bi bi-trash custom-icon2"></i></a>
+  </div>
+  {% endfor %}
+</div>
+    <div class="flex-container2">
+  <h2 class="titulo2">Próximas</h2>
+  {% for t in lista_proxima %}
+  <div class="post-it2">
     <h2>{{t.titulo}}</h2>
     <p class="contenido">{{t.contenido}}</p>
     <fecha>{{t.fecha_alerta.strftime('%d/%m/%Y')}}</fecha>

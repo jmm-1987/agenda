@@ -12,7 +12,7 @@ def home():
     hoy = datetime.today().date()
     manana = hoy + timedelta(days=1)
     lista_hoy = db.session.query(Tarea).filter(Tarea.fecha_alerta == hoy).all()
-    lista_proxima = db.session.query(Tarea).filter(Tarea.fecha_alerta == manana).all()
+    lista_proxima = db.session.query(Tarea).filter(Tarea.fecha_alerta >= manana).all()
 
     print(type(hoy))
 
@@ -33,6 +33,15 @@ def grabar_tarea():
     db.session.add(tarea)
     db.session.commit()
     return redirect(url_for('home'))
+@app.route('/borrar_tarea/<id>', methods=["POST"])
+def borrar_tarea(id):
+    registro_borrar = db.session.query(Tarea).filter_by(id=id).first()
+    db.session.delete(registro_borrar)
+    db.session.commit()
+    return redirect(url_for('index'))
+
+
+
 
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
