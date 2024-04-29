@@ -2,15 +2,17 @@ from flask import Flask, render_template, request, redirect, url_for
 import db
 from models import Tarea
 from datetime import date, datetime
+from sqlalchemy import func
 
 app = Flask(__name__)
 
 @app.route('/')
 def home():
-    hoy = datetime.now().date()
-    lista_tareas = db.session.query(Tarea).all()
+    hoy = datetime.today().date()
+    lista_tareas = db.session.query(Tarea).filter(Tarea.fecha_alerta == hoy).all()
     print (lista_tareas)
-    print(date.today())
+    print(type(hoy))
+
     return render_template("index.html", lista_tareas = lista_tareas, hoy=hoy)
 
 @app.route('/form_nueva_tarea')
