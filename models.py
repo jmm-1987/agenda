@@ -1,6 +1,6 @@
 import db
 from sqlalchemy import Column, Integer, String, Boolean
-from sqlalchemy import DateTime
+from sqlalchemy import DateTime, Date
 
 
 class Tarea(db.Base):
@@ -9,7 +9,7 @@ class Tarea(db.Base):
     titulo = Column(String(20), nullable=False)
     contenido = Column(String(200), nullable=False)
     fecha_alta = Column(DateTime, nullable=False)
-    fecha_alerta = Column(DateTime, nullable=False)
+    fecha_alerta = Column(Date, nullable=False)
     realizada = Column(Boolean, default=False)
     nombre_doc = Column(String(200))
 

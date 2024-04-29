@@ -2,7 +2,8 @@ from flask import Flask, render_template, request, redirect, url_for
 import db
 from models import Tarea
 from datetime import date, datetime
-from sqlalchemy import func
+from db import session
+
 
 app = Flask(__name__)
 
