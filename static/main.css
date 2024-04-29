@@ -16,13 +16,17 @@ body {
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap; /* Permite que los elementos se envuelvan a la siguiente línea si no hay suficiente espacio */
-  margin-top: 20px;
+  margin-top: 80px;
   gap: 10px; /* Espacio entre los elementos flexibles */
   max-width: 800px;
 }
 
-.titulo-flexbox {
-  text-align: center;
+.titulo {
+  position: absolute; /* Saca el título del flujo de flexbox */
+  top: 0; /* Lo posiciona en la parte superior del contenedor flex */
+  width: 100%; /* Ajusta el ancho para que ocupe todo el contenedor */
+  color: white;
+  font-family: cursive;
 }
 
 /*sobre los posit*/

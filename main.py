@@ -11,7 +11,7 @@ def home():
     lista_tareas = db.session.query(Tarea).all()
     print (lista_tareas)
     print(date.today())
-    return render_template("index.html", lista_tareas = lista_tareas)
+    return render_template("index.html", lista_tareas = lista_tareas, hoy=hoy)
 
 @app.route('/form_nueva_tarea')
 def formulario_tarea():

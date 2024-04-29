@@ -20,15 +20,21 @@
     </button>
     </a>
 
-<br>
-    <h1 class="titulo-flexbox">TAREAS DE HOY</h1>
 
+<br>
 <div class="flex-container">
+  <h2 class="titulo">Tareas de hoy {{hoy.strftime('%d/%m/%Y')}}</h2>
+  <a href="form_nueva_tarea" class="btn btn-primary">
+    <button type="button">
+    <i class="chevron-compact-down"></i>
+    </button>
+    </a>
+  </h2>
   {% for t in lista_tareas %}
   <div class="post-it">
     <h2>{{t.titulo}}</h2>
     <p class="contenido">{{t.contenido}}</p>
-    <fecha>{{t.fecha_alerta}}</fecha>
+    <fecha>{{t.fecha_alerta.strftime('%d/%m/%Y')}}</fecha>
   </div>
   {% endfor %}
 </div>
