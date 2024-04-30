@@ -70,6 +70,20 @@ body {
   text-align: center;
 }
 
+.realizada {
+  background-color: #7afa5d;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(1, 1, 0, 2.1);
+  margin-bottom: 10px;
+  width: calc(33.33% - 20px); /* Define el ancho de cada post-it para que haya tres columnas */
+  margin-right: 20px; /* Espacio entre las columnas */
+  margin-left: 0; /* Eliminar el margen izquierdo del primer elemento */
+  width: 300px; /* Ancho fijo para los contenedores post-it */
+  padding: 20px;
+  text-align: center;
+}
+
 .task-list {
   list-style: none;
   padding: 0;

@@ -39,6 +39,14 @@ def borrar_tarea(id):
     db.session.commit()
     return redirect(url_for('home'))
 
+@app.route('/realizar_tarea/<id>', methods=["POST", "GET"])
+def realizar_tarea(id):
+    registro_realizar = db.session.query(Tarea).filter_by(id=id).first()
+    registro_realizar.realizada = True
+    db.session.commit()
+    print (registro_realizar.realizada)
+    return redirect(url_for('home'))
+
 
 
 
