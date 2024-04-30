@@ -33,7 +33,9 @@
     <a href="{{ url_for('grabar_tarea', id=t.id) }}"><i class="bi bi-calendar-week custom-icon2"></i></a>
     <form action="/borrar_tarea/{{ t.id }}" method="POST">
       <input type="hidden" name="id" value="{{ t.id }}">
-    <a href="{{ url_for('grabar_tarea', id=t.id) }}"><i class="bi bi-trash custom-icon2"></i></a>
+      <input type="hidden" name="clase" value="Tarea">
+      <button type="submit"><i class="bi bi-trash custom-icon2"></i></button>
+    </form>
   </div>
   {% endfor %}
 </div>
