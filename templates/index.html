@@ -17,12 +17,18 @@
   <button type="button" class="btn btn-calendar">
   <div><i class="bi bi-calendar-week custom-icon2"></i></div>
 
-    <a href="form_nueva_tarea" class="btn btn-primary">
+    <a class="btn btn-primary" onclick="openWindow('/form_nueva_tarea', 500, 300)">
     <button type="button">
     <i class="bi bi-file-earmark-plus custom-icon"></i>
     </button>
     </a>
-
+    <script>
+    function openWindow(url, width, height) {
+      var left = (screen.width - width) / 2;
+      var top = (screen.height - height) / 2;
+      window.open(url, '', 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width=' + width + ', height=' + height + ', top=' + top + ', left=' + left);
+    }
+    </script>
 
 <br>
 <div class="d-flex flex-column">
