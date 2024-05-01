@@ -21,7 +21,7 @@
 <h2></h2>
 <br>
 <br>
-    <form action="/grabar_tarea" method="POST">
+    <form id="myForm" action="/grabar_tarea" method="POST">
         <label for="titulo">Título:</label><br>
         <input type="text" id="titulo" name="titulo" required><br><br>
 
@@ -35,7 +35,7 @@
     </form>
 <script>
     // Agrega un evento 'submit' al formulario
-    document.getElementById("form").addEventListener("submit", function() {
+    document.getElementById("myForm").addEventListener("submit", function() {
         // Cierra la ventana actual después de 1 segundo
         setTimeout(function() {
             window.close();
