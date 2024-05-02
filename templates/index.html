@@ -36,7 +36,7 @@
     <h2>{{t.titulo}}</h2>
     <p class="contenido">{{t.contenido}}</p>
     <!--<fecha>{{t.fecha_alerta.strftime('%d/%m/%Y')}}</fecha>-->
-    <form action="/editar_tarea/{{ t.id }}" method="POST" class="d-inline-flex align-items-center">
+    <form action="/posponer/{{ t.id }}" method="POST" class="d-inline-flex align-items-center" onsubmit="return posponer(event, {{ t.id }})">
       <input type="hidden" name="id" value="{{ t.id }}">
       <input type="hidden" name="clase" value="Tarea">
       <button type="submit"><i class="bi bi-pencil custom-icon2"></i></button>
@@ -61,7 +61,7 @@
     <h2>{{t.titulo}}</h2>
     <p class="contenido">{{t.contenido}}</p>
     <fecha>{{t.fecha_alerta.strftime('%d/%m/%Y')}}</fecha>
-    <form action="/editar_tarea/{{ t.id }}" method="POST" class="d-inline-flex align-items-center">
+    <form action="/posponer/{{ t.id }}" method="POST" class="d-inline-flex align-items-center" onsubmit="return posponer(event, {{ t.id }})">
       <input type="hidden" name="id" value="{{ t.id }}">
       <input type="hidden" name="clase" value="Tarea">
       <button type="submit"><i class="bi bi-pencil custom-icon2"></i></button>
@@ -80,6 +80,26 @@
   {% endfor %}
 </div>
 </div>
+
+<script>
+  function posponer(event, tareaId) {
+    event.preventDefault(); // Prevenir el envío del formulario normalmente
+
+    // Solicitar una nueva fecha al usuario
+    var nuevaFecha = prompt("Ingrese la nueva fecha para la tarea (DD-MM-AAAA):");
+
+    // Verificar si el usuario ingresó una fecha
+    if (nuevaFecha !== null && nuevaFecha !== "") {
+      // Crear un formulario oculto y enviar la nueva fecha al servidor
+      var form = document.createElement('form');
+      form.setAttribute('method', 'POST');
+      form.setAttribute('action', '/posponer/' + tareaId);
+      form.innerHTML = '<input type="hidden" name="nueva_fecha" value="' + nuevaFecha + '">';
+      document.body.appendChild(form);
+      form.submit();
+    }
+  }
+</script>
 
 </body>
 </html>

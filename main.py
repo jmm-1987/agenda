@@ -47,6 +47,15 @@ def realizar_tarea(id):
     print (registro_realizar.realizada)
     return redirect(url_for('home'))
 
+@app.route('/posponer/<tarea_id>', methods=['POST'])
+def posponer(tarea_id):
+    nueva_fecha = request.form.get('nueva_fecha')
+    fecha_nueva = datetime.strptime(nueva_fecha, '%d-%m-%Y')
+    registro_posponer = db.session.query(Tarea).filter_by(id=tarea_id).first()
+    registro_posponer.fecha_alerta = fecha_nueva
+    db.session.commit()
+    return redirect(url_for('home'))
+
 
 
 

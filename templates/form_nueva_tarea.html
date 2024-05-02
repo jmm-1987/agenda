@@ -31,17 +31,10 @@
         <label for="fecha_alerta" class="titulo_contenido">Fecha de Alerta:</label><br>
         <input type="date" id="fecha_alerta" name="fecha_alerta" required><br><br>
 
-        <input type="submit" id="submitButton" value="Grabar">
+        <input type="submit" value="Grabar">
         <a href="/" class="button" id="backButton">Volver</a>
     </form>
 <script>
-    // Agrega un evento 'submit' al formulario
-    document.getElementById("myForm").addEventListener("submit", function() {
-        // Cierra la ventana actual después de 1 segundo
-        setTimeout(function() {
-            window.close();
-        }, 1000);
-    });
 
     // Agrega un evento 'click' al botón "Volver" para cerrar la ventana emergente
     document.getElementById("backButton").addEventListener("click", function() {
