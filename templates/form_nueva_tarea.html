@@ -22,16 +22,17 @@
 <br>
 <br>
     <form id="myForm" action="/grabar_tarea" method="POST">
-        <label for="titulo"><h2 class="titulo">Título:</h2></label><br>
+        <label for="titulo" class="titulo">Título:</h2></label><br>
         <input type="text" id="titulo" name="titulo" required><br><br>
 
-        <label for="contenido">Contenido:</label><br>
+        <label for="contenido" class="titulo_contenido">Contenido:</label><br>
         <textarea id="contenido" name="contenido" rows="4" cols="30" required></textarea><br><br>
 
-        <label for="fecha_alerta">Fecha de Alerta:</label><br>
+        <label for="fecha_alerta" class="titulo_contenido">Fecha de Alerta:</label><br>
         <input type="date" id="fecha_alerta" name="fecha_alerta" required><br><br>
 
         <input type="submit" id="submitButton" value="Grabar">
+        <a href="/" class="button" id="backButton">Volver</a>
     </form>
 <script>
     // Agrega un evento 'submit' al formulario
@@ -41,6 +42,12 @@
             window.close();
         }, 1000);
     });
+
+    // Agrega un evento 'click' al botón "Volver" para cerrar la ventana emergente
+    document.getElementById("backButton").addEventListener("click", function() {
+        window.close();
+    });
 </script>
+
 </body>
 </html>

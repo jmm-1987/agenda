@@ -41,6 +41,11 @@ body {
   font-family: cursive;
 }
 
+.titulo_contenido{
+  color:white;
+  font-family: cursive;
+}
+
 /*sobre los posit*/
 .post-it {
   background-color: #fff;
@@ -114,3 +119,4 @@ button {
 .bi-trash custom-icon2 {
     margin-left: auto;
 }
+
