@@ -14,10 +14,7 @@
 <body>
 <br>
 
-  <button type="button" class="btn btn-calendar">
-  <div><i class="bi bi-calendar-week custom-icon2"></i></div>
-
-    <a class="btn btn-primary" onclick="openWindow('/form_nueva_tarea', 500, 300)">
+    <a  onclick="openWindow('/form_nueva_tarea', 500, 300)">
     <button type="button">
     <i class="bi bi-file-earmark-plus custom-icon"></i>
     </button>
@@ -44,7 +41,7 @@
       <input type="hidden" name="clase" value="Tarea">
       <button type="submit"><i class="bi bi-pencil custom-icon2"></i></button>
     </form>
-    <form action="/borrar_tarea/{{ t.id }}" method="POST" class="d-inline-flex align-items-center">
+    <form action="/borrar_tarea/{{ t.id }}" method="POST" class="d-inline-flex align-items-center" onsubmit="return confirm('¿Estás seguro de que quieres borrar esta tarea?');">
       <input type="hidden" name="id" value="{{ t.id }}">
       <input type="hidden" name="clase" value="Tarea">
       <button type="submit"><i class="bi bi-trash custom-icon2"></i></button>
@@ -64,6 +61,21 @@
     <h2>{{t.titulo}}</h2>
     <p class="contenido">{{t.contenido}}</p>
     <fecha>{{t.fecha_alerta.strftime('%d/%m/%Y')}}</fecha>
+    <form action="/editar_tarea/{{ t.id }}" method="POST" class="d-inline-flex align-items-center">
+      <input type="hidden" name="id" value="{{ t.id }}">
+      <input type="hidden" name="clase" value="Tarea">
+      <button type="submit"><i class="bi bi-pencil custom-icon2"></i></button>
+    </form>
+    <form action="/borrar_tarea/{{ t.id }}" method="POST" class="d-inline-flex align-items-center" onsubmit="return confirm('¿Estás seguro de que quieres borrar esta tarea?');">
+      <input type="hidden" name="id" value="{{ t.id }}">
+      <input type="hidden" name="clase" value="Tarea">
+      <button type="submit"><i class="bi bi-trash custom-icon2"></i></button>
+    </form>
+    <form action="/realizar_tarea/{{ t.id }}" method="POST" class="d-inline-flex align-items-center">
+      <input type="hidden" name="id" value="{{ t.id }}">
+      <input type="hidden" name="clase" value="Tarea">
+      <button type="submit"><i class="bi bi-check2-square custom-icon2"></i></button>
+    </form>
   </div>
   {% endfor %}
 </div>
