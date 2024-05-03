@@ -50,14 +50,6 @@
     </button>
     </a>
     </form>
-    <!-- script para abrir nueva ventana-->
-    <script>
-    function openWindow(url, width, height) {
-      var left = (screen.width - width) / 2;
-      var top = (screen.height - height) / 2;
-      window.open(url, '', 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width=' + width + ', height=' + height + ', top=' + top + ', left=' + left);
-    }
-    </script>
 
 <br>
 <div class="d-flex flex-column">
@@ -78,11 +70,19 @@
       <input type="hidden" name="clase" value="Tarea">
       <button type="submit"><i class="bi bi-trash custom-icon2"></i></button>
     </form>
-    <form action="/realizar_tarea/{{ t.id }}" method="POST" class="d-inline-flex align-items-center">
+    {% if t.realizada %}
+    <form action="/anular_realizar_tarea/{{ t.id }}" method="POST" class="d-inline-flex align-items-center">
       <input type="hidden" name="id" value="{{ t.id }}">
       <input type="hidden" name="clase" value="Tarea">
       <button type="submit"><i class="bi bi-check2-square custom-icon2"></i></button>
     </form>
+    {% else %}
+      <form action="/realizar_tarea/{{ t.id }}" method="POST" class="d-inline-flex align-items-center">
+      <input type="hidden" name="id" value="{{ t.id }}">
+      <input type="hidden" name="clase" value="Tarea">
+      <button type="submit"><i class="bi bi-square custom-icon2"></i></button>
+      </form>
+    {% endif %}
   </div>
   {% endfor %}
 </div>
@@ -103,10 +103,21 @@
       <input type="hidden" name="clase" value="Tarea">
       <button type="submit"><i class="bi bi-trash custom-icon2"></i></button>
     </form>
-    <form action="/realizar_tarea/{{ t.id }}" method="POST" class="d-inline-flex align-items-center">
+    {% if t.realizada %}
+    <form action="/anular_realizar_tarea/{{ t.id }}" method="POST" class="d-inline-flex align-items-center">
       <input type="hidden" name="id" value="{{ t.id }}">
       <input type="hidden" name="clase" value="Tarea">
       <button type="submit"><i class="bi bi-check2-square custom-icon2"></i></button>
+    </form>
+    {% else %}
+      <form action="/realizar_tarea/{{ t.id }}" method="POST" class="d-inline-flex align-items-center">
+      <input type="hidden" name="id" value="{{ t.id }}">
+      <input type="hidden" name="clase" value="Tarea">
+      <button type="submit"><i class="bi bi-square custom-icon2"></i></button>
+      </form>
+    {% endif %}
+
+
     </form>
   </div>
   {% endfor %}

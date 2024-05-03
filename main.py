@@ -13,9 +13,10 @@ def home():
     manana = hoy + timedelta(days=1)
     lista_hoy = db.session.query(Tarea).filter(Tarea.fecha_alerta == hoy).all()
     lista_proxima = db.session.query(Tarea).filter(Tarea.fecha_alerta >= manana).all()
+    lista_proxima_ordenada = sorted(lista_proxima, key=lambda tarea: tarea.fecha_alerta)
 
 
-    return render_template("index.html", lista_hoy = lista_hoy, lista_proxima = lista_proxima, hoy=hoy)
+    return render_template("index.html", lista_hoy = lista_hoy, lista_proxima = lista_proxima_ordenada, hoy=hoy)
 
 @app.route('/form_nueva_tarea')
 def formulario_tarea():
@@ -45,7 +46,13 @@ def realizar_tarea(id):
     registro_realizar = db.session.query(Tarea).filter_by(id=id).first()
     registro_realizar.realizada = True
     db.session.commit()
-    print (registro_realizar.realizada)
+    return redirect(url_for('home'))
+
+@app.route('/anular_realizar_tarea/<id>', methods=["POST", "GET"])
+def anular_realizar_tarea(id):
+    registro_realizar = db.session.query(Tarea).filter_by(id=id).first()
+    registro_realizar.realizada = False
+    db.session.commit()
     return redirect(url_for('home'))
 
 @app.route('/posponer/<tarea_id>', methods=['POST'])
