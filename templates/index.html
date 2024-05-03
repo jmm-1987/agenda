@@ -14,11 +14,43 @@
 <body>
 <br>
 
-    <a  onclick="openWindow('/form_nueva_tarea', 500, 300)">
+<script>
+        function nueva() {
+            // Solicitar entrada para las dos variables en la misma ventana emergente
+            var titulo = window.prompt("Título de la tarea:");
+            var contenido = window.prompt("Contenido:");
+            var fecha_alerta = window.prompt("Fecha de aviso dd/mm/aaaa:");
+
+            if (titulo !== null && titulo !== "" && contenido !== null && contenido !== "" && fecha_alerta !== null && fecha_alerta !== "")
+
+              var datos = {
+                titulo: titulo,
+                contenido: contenido,
+                fecha_alerta: fecha_alerta
+                };
+
+              // Crear un formulario oculto y enviar la nueva fecha al servidor
+              var form = document.createElement('form');
+              form.setAttribute('method', 'POST');
+              form.setAttribute('action', '/grabar_tarea');
+              form.innerHTML = '<input type="hidden" name="titulo" value="' + datos.titulo + '">' +
+                               '<input type="hidden" name="contenido" value="' + datos.contenido + '">' +
+                               '<input type="hidden" name="fecha_alerta" value="' + datos.fecha_alerta + '">';
+              document.body.appendChild(form);
+              form.submit();
+
+        console.log(datos);
+        }
+    </script>
+
+    <form action="/grabar_tarea/">
+    <a  onclick="nueva()">
     <button type="button">
     <i class="bi bi-file-earmark-plus custom-icon"></i>
     </button>
     </a>
+    </form>
+    <!-- script para abrir nueva ventana-->
     <script>
     function openWindow(url, width, height) {
       var left = (screen.width - width) / 2;

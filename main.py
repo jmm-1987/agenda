@@ -23,10 +23,11 @@ def formulario_tarea():
 
 @app.route('/grabar_tarea', methods=["POST"])
 def grabar_tarea():
+    ffecha_alerta = request.form.get('fecha_alerta')
     tarea = Tarea(titulo=request.form["titulo"],
               contenido=request.form["contenido"],
               fecha_alta = date.today(),
-              fecha_alerta=datetime.strptime(request.form["fecha_alerta"], '%Y-%m-%d'),
+              fecha_alerta = datetime.strptime(ffecha_alerta, '%d-%m-%Y'),
               realizada = False)
 
     db.session.add(tarea)
