@@ -83,6 +83,10 @@
       <button type="submit"><i class="bi bi-square custom-icon2"></i></button>
       </form>
     {% endif %}
+    {% if t.realizada %}
+    <br>
+    <a>Realizada por {{ t.usuario}} </a>
+    {% endif %}
   </div>
   {% endfor %}
 </div>
