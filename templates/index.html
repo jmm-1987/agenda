@@ -77,9 +77,9 @@
       <button type="submit"><i class="bi bi-check2-square custom-icon2"></i></button>
     </form>
     {% else %}
-      <form action="/realizar_tarea/{{ t.id }}" method="POST" class="d-inline-flex align-items-center">
+      <form action="/realizar_tarea/{{ t.id }}" method="POST" class="d-inline-flex align-items-center" onsubmit="return confirmarUsuario(event, {{ t.id }})">
       <input type="hidden" name="id" value="{{ t.id }}">
-      <input type="hidden" name="clase" value="Tarea">
+      <input type="hidden" name="clase" value="usuario">
       <button type="submit"><i class="bi bi-square custom-icon2"></i></button>
       </form>
     {% endif %}
@@ -142,6 +142,26 @@
       form.submit();
     }
   }
+</script>
+<script>
+    function confirmarUsuario(event, tareaId) {
+     event.preventDefault(); // Prevenir el envío del formulario normalmente
+        // Mostrar ventana emergente y obtener la respuesta del usuario
+        var usuario = prompt("¿Quién realiza la tarea?");
+
+        // Verificar si el usuario introdujo un nombre
+        if (usuario) {
+            // Si el usuario introdujo un nombre, actualizar el valor del campo oculto antes de enviar el formulario
+            var form = document.createElement('form');
+            form.setAttribute('method', 'POST');
+            form.setAttribute('action', '/realizar_tarea/' + tareaId);
+            form.innerHTML = '<input type="hidden" name="usuario" value="' + usuario + '">';
+            document.body.appendChild(form);
+            form.submit();
+        } else {
+            return false; // Detener el envío del formulario si el usuario canceló la entrada
+        }
+    }
 </script>
 
 </body>

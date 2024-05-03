@@ -45,6 +45,9 @@ def borrar_tarea(id):
 def realizar_tarea(id):
     registro_realizar = db.session.query(Tarea).filter_by(id=id).first()
     registro_realizar.realizada = True
+    print(request.form)
+    usuario = request.form["usuario"]
+    print(usuario)
     db.session.commit()
     return redirect(url_for('home'))
 
@@ -52,6 +55,8 @@ def realizar_tarea(id):
 def anular_realizar_tarea(id):
     registro_realizar = db.session.query(Tarea).filter_by(id=id).first()
     registro_realizar.realizada = False
+    usuario = request.form.get('usuario')
+    print(usuario)
     db.session.commit()
     return redirect(url_for('home'))
 
