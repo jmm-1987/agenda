@@ -16,31 +16,33 @@
 
 <script>
         function nueva() {
-            // Solicitar entrada para las dos variables en la misma ventana emergente
-            var titulo = window.prompt("Título de la tarea:");
-            var contenido = window.prompt("Contenido:");
-            var fecha_alerta = window.prompt("Fecha de aviso dd/mm/aaaa:");
+    // Solicitar entrada para las dos variables en la misma ventana emergente
+    var titulo = window.prompt("Título de la tarea:");
+    var contenido = window.prompt("Contenido:");
+    var fecha_alerta = window.prompt("Fecha de aviso dd-mm-aaaa:");
+    var regexFecha = /^\d{2}-\d{2}-\d{4}$/;
 
-            if (titulo !== null && titulo !== "" && contenido !== null && contenido !== "" && fecha_alerta !== null && fecha_alerta !== "")
+    if (titulo !== null && titulo !== "" && contenido !== null && contenido !== "" && fecha_alerta !== null && regexFecha.test(fecha_alerta)) {
+        var datos = {
+            titulo: titulo,
+            contenido: contenido,
+            fecha_alerta: fecha_alerta
+        };
 
-              var datos = {
-                titulo: titulo,
-                contenido: contenido,
-                fecha_alerta: fecha_alerta
-                };
-
-              // Crear un formulario oculto y enviar la nueva fecha al servidor
-              var form = document.createElement('form');
-              form.setAttribute('method', 'POST');
-              form.setAttribute('action', '/grabar_tarea');
-              form.innerHTML = '<input type="hidden" name="titulo" value="' + datos.titulo + '">' +
-                               '<input type="hidden" name="contenido" value="' + datos.contenido + '">' +
-                               '<input type="hidden" name="fecha_alerta" value="' + datos.fecha_alerta + '">';
-              document.body.appendChild(form);
-              form.submit();
-
-        console.log(datos);
-        }
+        // Crear un formulario oculto y enviar la nueva fecha al servidor
+        var form = document.createElement('form');
+        form.setAttribute('method', 'POST');
+        form.setAttribute('action', '/grabar_tarea');
+        form.innerHTML = '<input type="hidden" name="titulo" value="' + datos.titulo + '">' +
+                         '<input type="hidden" name="contenido" value="' + datos.contenido + '">' +
+                         '<input type="hidden" name="fecha_alerta" value="' + datos.fecha_alerta + '">';
+        document.body.appendChild(form);
+        form.submit();
+    } else {
+        // Si la entrada no coincide con el formato esperado, mostrar un mensaje de error
+        alert("Por favor, ingrese una fecha válida en formato dd-mm-aaaa.");
+    }
+}
     </script>
 
     <form action="/grabar_tarea/">
