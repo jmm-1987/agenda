@@ -15,8 +15,16 @@ def home():
     lista_proxima = db.session.query(Tarea).filter(Tarea.fecha_alerta >= manana).all()
     lista_proxima_ordenada = sorted(lista_proxima, key=lambda tarea: tarea.fecha_alerta)
 
-
     return render_template("index.html", lista_hoy = lista_hoy, lista_proxima = lista_proxima_ordenada, hoy=hoy)
+
+@app.route('/pasadas')
+def home_pasadas():
+    hoy = datetime.today().date()
+    lista_pasadas = db.session.query(Tarea).filter(Tarea.fecha_alerta < hoy).all()
+    lista_pasadas_ordenada = sorted(lista_pasadas, key=lambda tarea: tarea.fecha_alerta)
+
+    return render_template("index_pasadas.html", lista_pasadas = lista_pasadas_ordenada, hoy=hoy)
+
 
 @app.route('/form_nueva_tarea')
 def formulario_tarea():

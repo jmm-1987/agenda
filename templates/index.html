@@ -56,7 +56,7 @@
 <br>
 <div class="d-flex flex-column">
 <div class="flex-container">
-  <h2 class="titulo">Tareas de hoy {{hoy.strftime('%d/%m/%Y')}}</h2>
+  <h2 class="titulo">Tareas de hoy {{hoy.strftime('%d/%m/%Y')}} </h2>
   {% for t in lista_hoy %}
   <div class="{% if t.realizada == False %}post-it{% elif t.realizada %}realizada{% endif %}">
     <h2>{{t.titulo}}</h2>
@@ -116,11 +116,15 @@
       <button type="submit"><i class="bi bi-check2-square custom-icon2"></i></button>
     </form>
     {% else %}
-      <form action="/realizar_tarea/{{ t.id }}" method="POST" class="d-inline-flex align-items-center">
+      <form action="/realizar_tarea/{{ t.id }}" method="POST" class="d-inline-flex align-items-center" onsubmit="return confirmarUsuario(event, {{ t.id }})">
       <input type="hidden" name="id" value="{{ t.id }}">
-      <input type="hidden" name="clase" value="Tarea">
+      <input type="hidden" name="clase" value="usuario">
       <button type="submit"><i class="bi bi-square custom-icon2"></i></button>
       </form>
+    {% endif %}
+    {% if t.realizada %}
+    <br>
+    <a>Realizada por {{ t.usuario}} </a>
     {% endif %}
 
 
@@ -128,7 +132,7 @@
   </div>
   {% endfor %}
 </div>
-</div>
+<a href="/pasadas" class="button">Ver anteriores</a>
 
 <script>
   function posponer(event, tareaId) {
@@ -169,6 +173,8 @@
         }
     }
 </script>
+
+
 
 </body>
 </html>
